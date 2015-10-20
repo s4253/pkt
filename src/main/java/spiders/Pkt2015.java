@@ -16,13 +16,25 @@ public class Pkt2015 {
 
     public static void main(String[] args) throws IOException {
 
-        String baseUrl = "http://www.pkt.pl/artykuly-papiernicze-1/20-1/";
+        String baseUrl = "http://www.pkt.pl/";
 
-        Document doc = Jsoup.connect(baseUrl).get();
-        Elements linkList = doc.select(".box-category_items a");
+        String initialUrl = "http://www.pkt.pl/artykuly-papiernicze-1/20-1/";
 
-        for (Element item : linkList)
+        Document doc = Jsoup.connect(initialUrl).get();
+        Elements categoryLinkList = doc.select(".box-category_items a");
+
+        for (Element item : categoryLinkList) {
+            String subCategoryUrl = baseUrl + "/" + item.attr("href");
+
+            Document subDoc = Jsoup.connect(subCategoryUrl).get();
+
+            Elements subCategoryLinkList = subDoc.select(".box-categories li a");
+
             System.out.println(item.attr("href"));
+            for (Element element : subCategoryLinkList) {
+                System.out.println("\t" + element.attr("href"));
+            }
+        }
 
     }
 }
