@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * @author jacek.malolepszy@hp.com
  * @since 2015-10-20
- * 2h
+ * 3h
  */
 public class Pkt2015 {
 
@@ -28,11 +28,7 @@ public class Pkt2015 {
         Document mainPage = Jsoup.connect(initialUrl).get();
         Elements categoryLinkList = mainPage.select(".box-category_items a");
 
-
-        String content = "This is the content to write into file";
-
         File file = new File("/home/magik/mailList.txt");
-
 
         FileWriter fw = new FileWriter(file.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);
@@ -42,13 +38,11 @@ public class Pkt2015 {
             for (Element item : categoryLinkList) {
                 String categoryUrl = baseUrl + "/" + item.attr("href");
 
-                Document categoryPage = Jsoup.connect(categoryUrl).get();
-
-                Elements subCategoryLinkList = categoryPage.select(".box-categories li a");
-
-                System.out.println(item.attr("href"));
                 try {
 
+                    Document categoryPage = Jsoup.connect(categoryUrl).get();
+                    Elements subCategoryLinkList = categoryPage.select(".box-categories li a");
+                    System.out.println(item.attr("href"));
 
                     for (Element element : subCategoryLinkList) {
                         String subCategoryUrl = baseUrl + element.attr("href");
