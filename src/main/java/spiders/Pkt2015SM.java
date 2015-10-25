@@ -51,7 +51,8 @@ public class Pkt2015SM {
 
             for (String item : smLinkList) {
 
-                bw.append(item).append(" , empty , empty , empty");
+                bw.append(item).append(" ; empty ; empty ; empty");
+                bw.newLine();
 
                 try {
 
@@ -88,7 +89,7 @@ public class Pkt2015SM {
                                 emailItem = companyEmailElements.get(0).attr("title");
                             }
 
-                            String csvItem = companyNameItem + " , " + phoneItem + " , " + wwwItem + " , " + emailItem;
+                            String csvItem = companyNameItem + " ; " + phoneItem + " ; " + wwwItem + " ; " + emailItem;
 
                             System.out.println(csvItem);
                             bw.append(csvItem);
