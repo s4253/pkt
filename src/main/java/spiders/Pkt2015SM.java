@@ -34,18 +34,18 @@ public class Pkt2015SM {
         BufferedWriter bw = new BufferedWriter(fw);
 
         List<String> smLinkList = new ArrayList<String>();
-        smLinkList.add("http://www.pkt.pl/j%C4%99zyki-obce-nauka/4-1/");
 
         smLinkList.add("http://www.pkt.pl/j%C4%99zyki-obce-nauka/4-1/");
-        smLinkList.add("http://www.pkt.pl/szko%C5%82a-j%C4%99zykowa/4-1/?oWhat=szko%C5%82a+j%C4%99zykowa");
-        smLinkList.add("http://www.pkt.pl/szko%C5%82a-ta%C5%84ca/4-1/?oWhat=szko%C5%82a+ta%C5%84ca");
-        smLinkList.add("http://www.pkt.pl/nauka-j%C4%99zyka/4-1/?oWhat=nauka+j%C4%99zyka");
-        smLinkList.add("http://www.pkt.pl/nauka-ta%C5%84ca/4-1/?oWhat=nauka+ta%C5%84ca");
-        smLinkList.add("http://www.pkt.pl/nauka-j%C4%99zyka-obcego/4-1/?oWhat=nauka+j%C4%99zyka+obcego");
-        smLinkList.add("http://www.pkt.pl/taniec/4-1/?oWhat=taniec");
-        smLinkList.add("http://www.pkt.pl/kursy-j%C4%99zykowe/4-1/?oWhat=kursy+j%C4%99zykowe");
-        smLinkList.add("http://www.pkt.pl/szko%C5%82a-muzyczna/4-1/?oWhat=szko%C5%82a+muzyczna");
-        smLinkList.add("http://www.pkt.pl/szko%C5%82a-j%C4%99zyka/4-1/?oWhat=szko%C5%82a+j%C4%99zyka");
+//        smLinkList.add("http://www.pkt.pl/j%C4%99zyki-obce-nauka/4-1/");
+//        smLinkList.add("http://www.pkt.pl/szko%C5%82a-j%C4%99zykowa/4-1/?oWhat=szko%C5%82a+j%C4%99zykowa");
+//        smLinkList.add("http://www.pkt.pl/szko%C5%82a-ta%C5%84ca/4-1/?oWhat=szko%C5%82a+ta%C5%84ca");
+//        smLinkList.add("http://www.pkt.pl/nauka-j%C4%99zyka/4-1/?oWhat=nauka+j%C4%99zyka");
+//        smLinkList.add("http://www.pkt.pl/nauka-ta%C5%84ca/4-1/?oWhat=nauka+ta%C5%84ca");
+//        smLinkList.add("http://www.pkt.pl/nauka-j%C4%99zyka-obcego/4-1/?oWhat=nauka+j%C4%99zyka+obcego");
+//        smLinkList.add("http://www.pkt.pl/taniec/4-1/?oWhat=taniec");
+//        smLinkList.add("http://www.pkt.pl/kursy-j%C4%99zykowe/4-1/?oWhat=kursy+j%C4%99zykowe");
+//        smLinkList.add("http://www.pkt.pl/szko%C5%82a-muzyczna/4-1/?oWhat=szko%C5%82a+muzyczna");
+//        smLinkList.add("http://www.pkt.pl/szko%C5%82a-j%C4%99zyka/4-1/?oWhat=szko%C5%82a+j%C4%99zyka");
 
         try {
 
@@ -103,6 +103,12 @@ public class Pkt2015SM {
                             subCategoryUrl = baseUrl + nextPageLink.get(0).attr("href");
                         } else {
                             continueOnPage = false;
+                            try {
+
+                                Thread.sleep(1000);
+                            } catch (Exception e) {
+                                System.out.println("thread sleep");
+                            }
                         }
                     }
                 } catch (Exception e) {
