@@ -28,14 +28,14 @@ public class Pkt2015SM {
         Document mainPage = Jsoup.connect(initialUrl).get();
         Elements categoryLinkList = mainPage.select(".box-category_items a");
 
-        File file = new File("/home/magik/mailList.txt");
+        File file = new File("/home/muter/Pulpit/Jacek/11.txt");
 
         FileWriter fw = new FileWriter(file.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);
 
         List<String> smLinkList = new ArrayList<String>();
 
-        smLinkList.add("http://www.pkt.pl/j%C4%99zyki-obce-nauka/4-1/");
+//        smLinkList.add("http://www.pkt.pl/j%C4%99zyki-obce-nauka/4-1/");
 //        smLinkList.add("http://www.pkt.pl/j%C4%99zyki-obce-nauka/4-1/");
 //        smLinkList.add("http://www.pkt.pl/szko%C5%82a-j%C4%99zykowa/4-1/?oWhat=szko%C5%82a+j%C4%99zykowa");
 //        smLinkList.add("http://www.pkt.pl/szko%C5%82a-ta%C5%84ca/4-1/?oWhat=szko%C5%82a+ta%C5%84ca");
@@ -45,7 +45,7 @@ public class Pkt2015SM {
 //        smLinkList.add("http://www.pkt.pl/taniec/4-1/?oWhat=taniec");
 //        smLinkList.add("http://www.pkt.pl/kursy-j%C4%99zykowe/4-1/?oWhat=kursy+j%C4%99zykowe");
 //        smLinkList.add("http://www.pkt.pl/szko%C5%82a-muzyczna/4-1/?oWhat=szko%C5%82a+muzyczna");
-//        smLinkList.add("http://www.pkt.pl/szko%C5%82a-j%C4%99zyka/4-1/?oWhat=szko%C5%82a+j%C4%99zyka");
+        smLinkList.add("http://www.pkt.pl/szko%C5%82a-j%C4%99zyka/4-1/?oWhat=szko%C5%82a+j%C4%99zyka");
 
         try {
 
@@ -101,11 +101,19 @@ public class Pkt2015SM {
                         if (nextPageLink.size() == 1) {
 
                             subCategoryUrl = baseUrl + nextPageLink.get(0).attr("href");
+
+                            try {
+
+                                Thread.sleep(1500);
+                            } catch (Exception e) {
+                                System.out.println("thread sleep");
+                            }
+
                         } else {
                             continueOnPage = false;
                             try {
 
-                                Thread.sleep(1000);
+                                Thread.sleep(1500);
                             } catch (Exception e) {
                                 System.out.println("thread sleep");
                             }
