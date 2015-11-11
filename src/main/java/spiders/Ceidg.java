@@ -1,8 +1,15 @@
 package spiders;
 
-import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
+import java.io.IOException;
 
 /**
  * User: Jacek Malolepszy
@@ -11,20 +18,22 @@ import java.util.regex.Pattern;
  */
 public class Ceidg {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException
+    {
+        File resultFile = new File("/home/magik/mailList.txt");
 
-        String baseDir = "/home/magik/java/ptk/pages";
+        FileWriter fw = new FileWriter(resultFile.getAbsoluteFile());
+        BufferedWriter bw = new BufferedWriter(fw);
 
-        String linkBegins = "class=\"searchITSpanBold\"><a";
-
+        String baseDir = "/home/magik/java/pkt/ceidg/szkoly_tanca";
         File file = new File(baseDir);
 
         FilenameFilter filter = new FilenameFilter() {
-            public boolean accept(File directory, String fileName) {
+            public boolean accept(File directory, String fileName)
+            {
                 return fileName.endsWith(".htm");
             }
         };
-
 
 
         File[] fileHtmList = file.listFiles(filter);
@@ -33,30 +42,50 @@ public class Ceidg {
 
         for (File fileItem : fileHtmList) {
 
-            FileReader in = new FileReader(fileItem.getAbsolutePath());
-            BufferedReader br = new BufferedReader(in);
+            System.out.println(fileItem.getName());
 
-            String text = "";
-            String line = "";
+            Document mainPage = Jsoup.parse(fileItem, "UTF-8");
 
-            while ((line = br.readLine()) != null) {
-                text += line + "\n";
+            Elements itemList = mainPage.select("#searchResults .searchITDivDetails a:first-child");
+
+            for (Element element : itemList) {
+                String itemDetailsUrl = element.attr("href");
+                Document itemDetails = Jsoup.connect(itemDetailsUrl).get();
+
+                Elements name = itemDetails.select("#MainContent_lblName");
+                Elements email = itemDetails.select("#MainContent_lblEmail a");
+                Elements www = itemDetails.select("#MainContent_lblWebstite a");
+
+                String line = " ";
+
+                if (name.size() == 1) {
+                    System.out.print(name.get(0).html());
+                    line += name.get(0).html();
+                }
+
+                line += ";";
+                System.out.print(";");
+
+                if (email.size() == 1) {
+                    System.out.print(email.get(0).html());
+                    line += email.get(0).html();
+                }
+
+                line += ";";
+                System.out.print(";");
+
+                if (www.size() == 1) {
+                    System.out.print(www.get(0).html());
+                    line += www.get(0).html();
+                }
+                line += "\n";
+
+                bw.append(line);
+                bw.newLine();
+                System.out.println();
             }
-
-//            System.out.println(text);
-
-            String linkPattern = linkBegins;
-            System.out.println(linkPattern);
-
-            Pattern pattern = Pattern.compile(linkPattern);
-            Matcher matcher = pattern.matcher(text);
-
-
-            while (matcher.find()) {
-                System.out.println(text.substring(matcher.start()+34, matcher.end()+113));
-            }
-
         }
 
+        bw.close();
     }
 }
