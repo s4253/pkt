@@ -19,7 +19,8 @@ import java.util.List;
  */
 public class Pkt2015SM {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException
+    {
 
         String baseUrl = "http://www.pkt.pl/";
 
@@ -28,7 +29,7 @@ public class Pkt2015SM {
         Document mainPage = Jsoup.connect(initialUrl).get();
         Elements categoryLinkList = mainPage.select(".box-category_items a");
 
-        File file = new File("/home/muter/Pulpit/Jacek/11.txt");
+        File file = new File("/home/magik/szkoly_tanca.txt");
 
         FileWriter fw = new FileWriter(file.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);
@@ -45,7 +46,9 @@ public class Pkt2015SM {
 //        smLinkList.add("http://www.pkt.pl/taniec/4-1/?oWhat=taniec");
 //        smLinkList.add("http://www.pkt.pl/kursy-j%C4%99zykowe/4-1/?oWhat=kursy+j%C4%99zykowe");
 //        smLinkList.add("http://www.pkt.pl/szko%C5%82a-muzyczna/4-1/?oWhat=szko%C5%82a+muzyczna");
-        smLinkList.add("http://www.pkt.pl/szko%C5%82a-j%C4%99zyka/4-1/?oWhat=szko%C5%82a+j%C4%99zyka");
+//        smLinkList.add("http://www.pkt.pl/szko%C5%82a-j%C4%99zyka/4-1/?oWhat=szko%C5%82a+j%C4%99zyka");
+//        smLinkList.add("http://www.pkt.pl/szko%C5%82y-ta%C5%84ca/4-1/");
+        smLinkList.add("http://www.pkt.pl/taniec-akcesoria/4-1/");
 
         try {
 
@@ -108,7 +111,6 @@ public class Pkt2015SM {
                             } catch (Exception e) {
                                 System.out.println("thread sleep");
                             }
-
                         } else {
                             continueOnPage = false;
                             try {

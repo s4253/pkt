@@ -1,7 +1,5 @@
 package spiders;
 
-
-import exception.NextPageNotFoundException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,12 +21,12 @@ public class Pkt2015 {
 
         String baseUrl = "http://www.pkt.pl/";
 
-        String initialUrl = "http://www.pkt.pl/artykuly-papiernicze-1/20-1/";
+        String initialUrl = "http://www.pkt.pl/szko%C5%82y-ta%C5%84ca/4-1/";
 
         Document mainPage = Jsoup.connect(initialUrl).get();
         Elements categoryLinkList = mainPage.select(".box-category_items a");
 
-        File file = new File("/home/muter/Pulpit/Jacek/mailList.txt");
+        File file = new File("/home/magik/szkoly_tanca.txt");
 
         FileWriter fw = new FileWriter(file.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);

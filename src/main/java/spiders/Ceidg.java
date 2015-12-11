@@ -25,7 +25,7 @@ public class Ceidg {
         FileWriter fw = new FileWriter(resultFile.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);
 
-        String baseDir = "/home/magik/java/pkt/ceidg/szkoly_tanca";
+        String baseDir = "/home/magik/Desktop/ceidg";
         File file = new File(baseDir);
 
         FilenameFilter filter = new FilenameFilter() {
